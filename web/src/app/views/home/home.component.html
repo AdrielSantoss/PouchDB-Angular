@@ -1,0 +1,31 @@
+<h1>Bem vindo a demo com PouchDb</h1>
+<br>
+<br>
+<form [formGroup]="pouchform"> 
+  <label>Digite seu Nome</label>
+  <input formControlName="name"/>
+  <br>
+  <br>
+  <label>Digite seu Email</label>
+  <input type="email" formControlName="email"/>
+  <br>
+  <br>
+  <button (click)="create()" type="submit">Save Form</button>
+
+  <hr>
+<h2>Pesquisar pelo Nome</h2>
+
+<label>Nome:</label>
+<input formControlName="searchName"/> <br/>
+<br>
+<button (click)="read()">Pesquisar</button> <br/>
+<br/> 
+<table>
+
+  <tr *ngFor="let row of result">
+
+    <td>Nome: <input type="text" formControlName="newName" value="{{row.name}}"></td>
+    <td>Email: <input type="text" formControlName="newEmail" value="{{row.email}}"></td> <button name="{{row.name}}" (click)="update($event)">Atualizar</button> <button name="{{row.name}}" (click)="delete($event)">Deletar</button>
+  </tr>
+</table>
+</form> 
