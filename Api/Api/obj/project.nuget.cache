@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "s7waSdoj5iuK+1GELMd2wf9lPIoK5Nfx9Dy7vQ8nJ4mNwrFFSQsbyS7Zw2B0AcwLjHIpACDXzleGZN76nbLXvA==",
+  "success": true,
+  "projectFilePath": "C:\\Asantos\\Prototipos\\PouchDb-Angular\\Api\\Api\\Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\asantos\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

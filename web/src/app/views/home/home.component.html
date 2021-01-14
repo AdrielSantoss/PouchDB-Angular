@@ -1,26 +1,24 @@
-<h1>Bem vindo a demo com PouchDb</h1>
-<br>
-<br>
-<form [formGroup]="pouchform"> 
-  <label>Digite seu Nome</label>
-  <input formControlName="name"/>
-  <br>
-  <br>
-  <label>Digite seu Email</label>
-  <input type="email" formControlName="email"/>
-  <br>
-  <br>
-  <button (click)="create()" type="submit">Save Form</button>
-
+<div class="title-container">
+  <h1 class="title">Bem vindo a demo com PouchDb</h1>
+</div>
+<form [formGroup]="pouchform" class="form"> 
+  <div class="create">
+      <label>Digite seu Nome</label>
+      <input formControlName="name"/>
+      <label>Digite seu Email</label>
+      <input type="email" formControlName="email"/>
+      <button (click)="create()" type="submit">Salvar usuário</button>
+  </div>
   <hr>
-<h2>Pesquisar pelo Nome</h2>
-
-<label>Nome:</label>
-<input formControlName="searchName"/> <br/>
-<br>
-<button (click)="read()">Pesquisar</button> <br/>
-<br/> 
-<table>
+  <h2 class="search-title">Pesquisar pelo Nome</h2>
+  <div class="search">
+    
+    <label>Nome:</label>
+    <input formControlName="searchName"/>
+    <button (click)="read()">Pesquisar</button> <br/>
+    <br/> 
+  </div>
+<table class="table-users">
 
   <tr *ngFor="let row of result">
 

@@ -1,0 +1,39 @@
+.title-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: brown;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.form{
+    background-color: white;
+    box-shadow: 1px 1px 10px 1px black;
+}
+.create{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.create input{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.search{
+    padding: 10px;
+    text-align: center;
+}
+.search input{
+    margin-left: 10px;
+}
+.search-title{
+    text-align: center;
+}
+
+.table-users{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}

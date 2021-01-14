@@ -12,17 +12,32 @@ import PouchDBFind from 'node_modules/pouchdb-find';
 export class HomeComponent implements OnInit {
 
   pouchdb: any;
+  remotedb: any;
   result: any;
+  result2: any;
 
   
   constructor(private formBuilder: FormBuilder) {
     
-    this.pouchdb = new PouchDB("http://localhost:5984/pouachform");
+    this.pouchdb = new PouchDB("pouachform");
+    this.remotedb = new PouchDB("http://localhost:5984/pouachform");
     PouchDB.plugin(PouchDBFind);
 
     this.pouchdb.createIndex({
       index: {fields: ['name']}
     })
+
+    //unidirecional -> alterações do pouchDb para couchdb
+
+
+    /*  
+    bidirecional -> pouchdb para couchdb -> couchdb para pouchdb -> vice-versa
+    pouchdb.replicate.to(remoteDB);
+    pouchdb.replicate.from(remoteDB);
+
+    outra forma de escrever o mesmo código acima:
+    pouchdb.sync(remoteDB);
+    */
 
   }
 
@@ -39,6 +54,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }  
 
+  sync(){
+    return this.pouchdb.replicate.to(this.remotedb).on('complete', function () {
+    
+    }).on('error', function (err) {
+      
+    });
+  }
 
   create() {
     var pouchform = {
@@ -54,15 +76,26 @@ export class HomeComponent implements OnInit {
         alert("Salvado com sucesso!")
       }
     })
+    this.sync()
   } 
 
    async read(){
      let records = await this.getForms(this.pouchform.value.searchName); 
 
-     this.result = records.docs; //
+     this.result = records.docs; // 
   }
 
   getForms(searchName){
+
+    if(!searchName){
+      return this.pouchdb.allDocs({
+        include_docs: true,
+        attachments: true
+      }, function(err, response) {
+        if (err) { return console.log(err); }
+        return response;
+      });
+    } 
       return this.pouchdb.find({
         selector: {
           name: searchName
@@ -90,10 +123,11 @@ export class HomeComponent implements OnInit {
         alert("Atualizado com sucesso!")
       }
     });
+    this.sync()
   }
 
   delete(){
     this.pouchdb.remove(this.result[0]);
+    this.sync()
   }
-
 }
